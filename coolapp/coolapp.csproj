@@ -7,9 +7,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Новая папка1\**" />
+    <Compile Remove="Новая папка2\**" />
+    <Compile Remove="Новая папка\**" />
+    <Content Remove="Новая папка1\**" />
+    <Content Remove="Новая папка2\**" />
+    <Content Remove="Новая папка\**" />
+    <EmbeddedResource Remove="Новая папка1\**" />
+    <EmbeddedResource Remove="Новая папка2\**" />
+    <EmbeddedResource Remove="Новая папка\**" />
+    <None Remove="Новая папка1\**" />
+    <None Remove="Новая папка2\**" />
+    <None Remove="Новая папка\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.14">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.11" />
   </ItemGroup>
 
 </Project>

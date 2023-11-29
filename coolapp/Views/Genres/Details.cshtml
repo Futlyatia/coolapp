@@ -1,0 +1,22 @@
+﻿@model coolapp.Models.Data.Genre
+@{
+    ViewData["Title"] = "Жанры";
+}
+
+<h3>
+    <a class="btn text-dark" asp-action="Index" title="Вернуться к списку">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    Просмотр жанра
+</h3>
+
+<div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NameOfGenre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NameOfGenre)
+        </dd>
+    </dl>
+</div>
