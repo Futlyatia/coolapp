@@ -97,7 +97,7 @@ namespace coolapp.Controllers
                 {
                     NameAlbum = model.NameAlbum,
                     Cover = model.Cover,
-                    DatePost = DateTime.Now
+                    DatePost = DateTime.Now,
                 };
 
                 _context.Add(album);
