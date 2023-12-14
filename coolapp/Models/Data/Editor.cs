@@ -12,5 +12,8 @@ namespace coolapp.Models.Data
         [Required(ErrorMessage = "Введите имя исполнителя")]
         [Display(Name = "Имя исполнителя")]
         public string NameOfEditor { get; set; }
+
+        ICollection<EditorsForAlbums> EditorsForAlbums { get; set; }
+
     }
 }

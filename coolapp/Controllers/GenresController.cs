@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using coolapp.Models;
 using coolapp.Models.Data;
 using coolapp.ViewModels.Genres;
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace coolapp.Controllers
 {
@@ -21,14 +22,21 @@ namespace coolapp.Controllers
         }
 
         // GET: Genres
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
+            ViewData["CurrentFilter"] = searchString;
+            var genres = from s in _context.Genres
+                          select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                genres = genres.Where(s => s.NameOfGenre.Contains(searchString)).OrderBy(f => f.NameOfGenre);
+            }
             // через контекст данных получаем доступ к таблице базы данных FormsOfStudy
             var appCtx = _context.Genres
                 .OrderBy(f => f.NameOfGenre);          // сортируем все записи по имени форм обучения
 
             // возвращаем в представление полученный список записей
-            return View(await appCtx.ToListAsync());
+            return View(await genres.OrderBy(f => f.NameOfGenre).AsNoTracking().ToListAsync());
         }
 
         // GET: Genres/Details/5

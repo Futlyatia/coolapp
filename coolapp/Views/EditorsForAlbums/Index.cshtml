@@ -1,0 +1,47 @@
+﻿@model IEnumerable<coolapp.Models.Data.EditorsForAlbums>
+
+@{
+    ViewData["Title"] = "Связи исполнители к альбомам";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Главная</a></li>
+        <li class="breadcrumb-item active">Связи исполнители к альбомам</li>
+    </ol>
+</nav>
+<h1>Связи исполнители к альбомам</h1>
+<h6>
+    <a class="btn text-dark" asp-action="Create">
+        <i class="far fa-plus-square"></i>  Добавить связь
+    </a>
+</h6>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["EditorSortParm"]">@Html.DisplayNameFor(model => model.IdEditor)</a>
+
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["AlbumSortParm"]">@Html.DisplayNameFor(model => model.IdAlbum)</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Editor.NameOfEditor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Album.NameAlbum)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

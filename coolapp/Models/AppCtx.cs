@@ -13,6 +13,7 @@ namespace coolapp.Models
         }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Editor> Editors { get; set; }
-
+        public DbSet<Album> Albums { get; set; }
+        public DbSet<EditorsForAlbums> EditorsForAlbums { get; set;}
     }
 }

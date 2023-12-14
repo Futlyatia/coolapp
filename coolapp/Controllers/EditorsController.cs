@@ -16,14 +16,21 @@ namespace coolapp.Controllers
         }
 
         // GET: Editors
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
+            ViewData["CurrentFilter"] = searchString;
+            var editors = from s in _context.Editors
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                editors = editors.Where(s => s.NameOfEditor.Contains(searchString)).OrderBy(f => f.NameOfEditor);
+            }
             // через контекст данных получаем доступ к таблице базы данных FormsOfStudy
             var appCtx = _context.Editors
                 .OrderBy(f => f.NameOfEditor);          // сортируем все записи по имени форм обучения
 
             // возвращаем в представление полученный список записей
-            return View(await appCtx.ToListAsync());
+            return View(await editors.OrderBy(f => f.NameOfEditor).AsNoTracking().ToListAsync());
         }
 
         // GET: Editors/Details/5
